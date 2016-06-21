@@ -1,62 +1,342 @@
-<?php
-/**
- * The main template file
- *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
- *
- * @link http://codex.wordpress.org/Template_Hierarchy
- *
- * @package WordPress
- * @subpackage Twenty_Sixteen
- * @since Twenty Sixteen 1.0
- */
+<?php get_header();?>
+		<div class="contents-top">
+			<div class="about pc--none">
+				<div class="container">
+					<div class="about__ttl"><img src="<?php echo get_template_directory_uri(); ?>//images/logo.png" alt=""></div>
+					<div class="about__description">
+						関西のWeb・IT業界のコミュニティ<br>
+						（勉強会・交流会）情報を中心に、<br>
+						「おもろい」感じの学べるイベントを<br>
+						沢山紹介していきます。
+					</div>
+				</div>
+			</div>
 
-get_header(); ?>
+			<div class="articles articles--new">
+				<div class="container">
+					<h1 class="articles__ttl">最新の記事</h1>
+					<div class="pagination">
+						<?php
+						if( have_posts() ) :
+							while ( have_posts() ) : the_post();
+								?>
+								<div id="post-<?php the_ID(); ?>"class="articles__article">
+									<div class="article__thumb">
+										<div class="article__thumb-img">
+										</div>
+										<div class="article__category category--prog">
+											<i class="material-icons">build</i>
+											<div class="article__category-ttl"><?php the_category(); ?></div>
+										</div>
+										<span class="article__community"><a href="">[ PHP勉強会 ]</a></span>
+									</div>
+									<div class="article__detail">
+										<p class="article__ttl">
+											<?php the_title(); ?>
+										</p>
+										<div class="article__text">
+											<?php the_content( '続きを読む &raquo;'); ?>
+										</div>
+										<span class="article__date"><?php the_date(); ?></span>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+										<div class="article__writer">
+											<div class="writer-icon"></div>
+											<span class="writer-name">mikakane</span>
+										</div>
 
-		<?php if ( have_posts() ) : ?>
+									</div>
+								</div>
+								<?php
+							endwhile;
+						else :
+							?>
+							<h2>記事はありません</2>
+							<p>お探しの記事は見つかりませんでした。</p>
+							<?php
+						endif;
+						?>
 
-			<?php if ( is_home() && ! is_front_page() ) : ?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-			<?php endif; ?>
+						<?php $args = array(
+							'prev_text' => '&laquo; PREV',
+							'next_text' => 'NEXT &raquo;',
+							'show_all' => false,
+							'mid_size' => 1,
+							'screen_reader_text' => 'pagination',
+						);
+						the_posts_pagination( $args ); ?>
+					</div>
+					<div class="articles__article">
+						<div class="article__thumb">
+							<div class="article__thumb-img">
+							</div>
+							<div class="article__category category--prog">
+								<i class="material-icons">build</i>
+								<span>プログラミング</span>
+							</div>
+							<span class="article__community"><a href="">[ PHP勉強会 ]</a></span>
+						</div>
+						<div class="article__detail">
+							<p class="article__ttl">これはダミーです</p>
+							<p class="article__text">ずっと先刻を観念院はもうその影響でたらなりに妨げばいなけれには批評受けるますですので、少しにも過ぎで…</p>
+							<span class="article__date">1026年1月５日</span>
 
-			<?php
-			// Start the loop.
-			while ( have_posts() ) : the_post();
+							<div class="article__writer">
+								<div class="writer-icon"></div>
+								<span class="writer-name">mikakane</span>
+							</div>
 
-				/*
-				 * Include the Post-Format-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+						</div>
+					</div>
+					<div class="articles__article">
+						<div class="article__thumb">
+							<div class="article__thumb-img">
+							</div>
+							<div class="article__category category--design">
+								<i class="material-icons">mode_edit</i>
+								<span>デザイン</span>
+							</div>
+							<span class="article__community"><a href="">[ PHP勉強会PHP勉強会PHP勉強会PHP勉強会PHP勉強会 ]</a></span>
+						</div>
+						<div class="article__detail">
+							<p class="article__ttl">PHPカンファレンス北海道</p>
+							<p class="article__text">ずっと先刻を観念院はもうその影響でたらなりに妨げばいなけれには批評受けるますですので、少しにも過ぎで…</p>
+							<span class="article__date">2016/4/16</span>
 
-			// End the loop.
-			endwhile;
+							<div class="article__writer">
+								<div class="writer-icon"></div>
+								<span class="writer-name">mikakane</span>
+							</div>
 
-			// Previous/next page navigation.
-			the_posts_pagination( array(
-				'prev_text'          => __( 'Previous page', 'twentysixteen' ),
-				'next_text'          => __( 'Next page', 'twentysixteen' ),
-				'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'twentysixteen' ) . ' </span>',
-			) );
+						</div>
+					</div>
+					<div class="articles__article">
+						<div class="article__thumb">
+							<div class="article__thumb-img">
+							</div>
+							<div class="article__category category--other">
+								<i class="material-icons">lightbulb_outline</i>
+								<span>考え方・その他</span>
+							</div>
+							<span class="article__community"><a href="">[ 関西フロントエンドUG ]</a></span>
+						</div>
+						<div class="article__detail">
+							<p class="article__ttl">PHPカンファレンス北海道 2016にて登壇してきました。</p>
+							<p class="article__text">ずっと先刻を観念院はもうその影響でたらなりに妨げばいなけれには批評受けるますですので、少しにも過ぎで…</p>
+							<span class="article__date">2016/4/16</span>
 
-		// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
+							<div class="article__writer">
+								<div class="writer-icon"></div>
+								<span class="writer-name">mikakane</span>
+							</div>
+						</div>
+					</div>
 
-		endif;
-		?>
+				</div>
+			</div>
 
-		</main><!-- .site-main -->
-	</div><!-- .content-area -->
+			<div class="events  pc--none">
+				<h1 class="events__ttl">開催予定のイベント</h1>
+				<div class="container">
+					<div class="events__event">
+						<span class="event__prefectures">大阪府</span>
+						<span class="event__date">6月12日</span>
+						<span class="event__time">13:00-</span>
+						<a class="event__ttl" href="#" >もくもく会</a>
+						<span class="event__community">[ leccafe ]</span>
+						<span class="event__seat seat--vacancy">２人分の空席</span>
+						<span class="event__place">株式会社chatbox</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">京都府</span>
+						<span class="event__date">6月16日</span>
+						<span class="event__time">19:00-</span>
+						<a class="event__ttl" href="#">フロントエンドUI/UXについて語ろう勉強会</a>
+						<span class="event__community">[ 関西フロントエンドUG ]</span>
+						<span class="event__seat seat--overflow">キャンセル待ち105名</span>
+						<span class="event__place">TAMコワーキングTAMコワーキングTAMコワーキングTAMコワーキング</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">京都府</span>
+						<span class="event__date">6月16日</span>
+						<span class="event__time">19:00-</span>
+						<a class="event__ttl" href="#">フロントエンドUI/UXについて語ろう勉強会フロントエンドUI/UXについて語ろう勉強会フロントエンドUI/UXについて語ろう勉強会</a>
+						<span class="event__community">[ 関西フロントエンドUG ]</span>
+						<span class="event__seat seat--overflow">キャンセル待ち105名</span>
+						<span class="event__place">TAMコワーキング</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">大阪府</span>
+						<span class="event__date">6月12日</span>
+						<span class="event__time">13:00-</span>
+						<a class="event__ttl" href="#" >もくもく会</a>
+						<span class="event__community">[ leccafe ]</span>
+						<span class="event__seat seat--full">満席</span>
+						<span class="event__place">株式会社chatbox</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">大阪府</span>
+						<span class="event__date">6月12日</span>
+						<span class="event__time">13:00-</span>
+						<a class="event__ttl" href="#" >もくもく会</a>
+						<span class="event__community">[ leccafe ]</span>
+						<span class="event__seat seat--vacancy">２人分の空席</span>
+						<span class="event__place">株式会社chatbox</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">大阪府</span>
+						<span class="event__date">6月12日</span>
+						<span class="event__time">13:00-</span>
+						<a class="event__ttl" href="#" >もくもく会</a>
+						<span class="event__community">[ leccafe ]</span>
+						<span class="event__seat seat--vacancy">２人分の空席</span>
+						<span class="event__place">株式会社chatbox</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">京都府</span>
+						<span class="event__date">6月16日</span>
+						<span class="event__time">19:00-</span>
+						<a class="event__ttl" href="#" >フロントエンドUI/UXについて語ろう勉強会</a>
+						<span class="event__community">[ 関西フロントエンドUG ]</span>
+						<span class="event__seat seat--overflow">キャンセル待ち105名</span>
+						<span class="event__place">TAMコワーキングTAMコワーキングTAMコワーキングTAMコワーキング</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">京都府</span>
+						<span class="event__date">6月16日</span>
+						<span class="event__time">19:00-</span>
+						<a class="event__ttl" href="#" >フロントエンドUI/UXについて語ろう勉強会フロントエンドUI/UXについて語ろう勉強会フロントエンドUI/UXについて語ろう勉強会</a>
+						<span class="event__community">[ 関西フロントエンドUG ]</span>
+						<span class="event__seat seat--overflow">キャンセル待ち105名</span>
+						<span class="event__place">TAMコワーキング</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">大阪府</span>
+						<span class="event__date">6月12日</span>
+						<span class="event__time">13:00-</span>
+						<a class="event__ttl" href="#" >もくもく会</a>
+						<span class="event__community">[ leccafe ]</span>
+						<span class="event__seat seat--full">満席</span>
+						<span class="event__place">株式会社chatbox</span>
+					</div>
+					<div class="events__event">
+						<span class="event__prefectures">大阪府</span>
+						<span class="event__date">6月12日</span>
+						<span class="event__time">13:00-</span>
+						<a class="event__ttl" href="#" >もくもく会</a>
+						<span class="event__community">[ leccafe ]</span>
+						<span class="event__seat seat--vacancy">２人分の空席</span>
+						<span class="event__place">株式会社chatbox</span>
+					</div>
+					<div class="link__event-archives">
+						<a class="" href="">イベント一覧へ</a>
+					</div>
+				</div>
+			</div>
+			<nav class="information pc--none">
+				<ul>
+					<li class="information__item">
+						<a href=""><i class="fa fa-gratipay" aria-hidden="true"></i>はじめて勉強会に参加する方へ</a>
+					</li>
+					<li class="information__item">
+						<a href=""><i class="fa fa-group" aria-hidden="true"></i>関西のコミュニティ紹介</a>
+					</li>
+					<li class="information__item">
+						<a href=""><i class="fa fa-pencil-square-o" aria-hidden="true"></i>ブログ書いてみませんか？</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="contact pc--none">
+			<p class="contact__message">運営に関するお問い合わせはこちら</p>
+			<div class="contact__btn"><a href="">お問い合わせ</a></div>
+		</div>
+		<div class="search">
+			<div class="search__by-keyword">
+				<p class="search__ttl">記事をさがす</p>
+				<div class="search__form">
+					<i class="fa fa-search"></i>
+					<input type="text" placeholder="てきすとがはいります">
+				</div>
+			</div>
 
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+			<div class="search__by-category">
+				<p class="search__ttl">カテゴリからさがす</p>
+
+				<div class="category__programing ">
+					<div class="category__btn">
+						<div class="btn-left">
+							<i class="material-icons">build</i>
+							<p>プログラミング</p>
+						</div>
+						<div class="btn-right">
+							<i class="fa fa-angle-right"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="category__design">
+					<div class="category__btn">
+						<div class="btn-left">
+							<i class="material-icons">mode_edit</i>
+							<p>デザイン</p>
+						</div>
+						<div class="btn-right">
+							<i class="fa fa-angle-right"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="category__other">
+					<div class="category__btn">
+						<div class="btn-left">
+							<i class="material-icons">lightbulb_outline</i>
+							<p>考え方・その他</p>
+						</div>
+						<div class="btn-right">
+							<i class="fa fa-angle-right"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="search__by-tag">
+				<p class="search__ttl">タグからさがす</p>
+				<div class="search__tags">
+					<div class="container">
+						<a href="" class="search__tag">#jQuery</a>
+						<a href="" class="search__tag">#PHP</a>
+						<a href="" class="search__tag">#UI</a>
+						<a href="" class="search__tag">#Photoshop</a>
+						<a href="" class="search__tag">#jQuery</a>
+						<a href="" class="search__tag">#PHP</a>
+						<a href="" class="search__tag">#UI</a>
+						<a href="" class="search__tag">#Photoshop</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="search__by-community">
+				<p class="search__ttl">コミュニティからさがす</p>
+				<div class="container">
+					<div class="search__community">
+						<div class="community">
+							<div class="community__icon"></div>
+							<p>関西フロントエンドUG</p>
+						</div>
+						<div class="community">
+							<div class="community__icon"></div>
+							<p>関西フロントエンドUG</p>
+						</div>
+						<div class="community">
+							<div class="community__icon"></div>
+							<p>関西フロントエンドUG</p>
+						</div>
+						<div class="community">
+							<div class="community__icon"></div>
+							<p>関西フロントエンドUG</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php get_footer(); ?>
