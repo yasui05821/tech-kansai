@@ -129,8 +129,6 @@ html {
   }
 }
 .contents-blog {
-  margin-top: $header-size;
-  padding-top: .5em;
   @import "contents/blog/_single";
 }
 
@@ -252,6 +250,7 @@ html {
   }
   // pc-colum-center start
   .pc-column-center {
+    max-width: 980px;
     margin-top: $header-size;
     .article__detail {
       width: 100%;
