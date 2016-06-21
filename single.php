@@ -40,6 +40,10 @@
 						</div>
 
 						<div class="blog__content">
+							<?php the_content(); ?>
+						</div>
+
+						<div class="blog__content">
 							<div class="blog__photo">
 								<img src="http://placehold.it/500x220" alt="">
 							</div>
