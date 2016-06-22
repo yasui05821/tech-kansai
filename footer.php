@@ -218,7 +218,93 @@
 			</div>
 		</div>
 	</div>
-</div>
+	<div class="pc-column-right">
+		<div class="blog__writer-profile">
+			<div class="writer-profile__ttl">記事を書いた人</div>
+			<div class="writer-icon"></div>
+			<p class="writer-name">
+				<a href="<?php echo esc_url(
+					get_author_posts_url( get_the_author_meta('ID') )
+				); ?>">
+					<?php the_author();?>
+				</a>
+
+			</p>
+			<div class="writer-skill">フルスタックエンジニア</div>
+			<div class="writer-sns">
+				<div class="writer-sns__icon writer-sns--tw"><i class="fa fa-twitter"></i></div>
+				<div class="writer-sns__icon writer-sns--fb"><i class="fa fa-facebook"></i></div>
+			</div>
+		</div>
+		<div class="articles articles--user">
+			<?php
+			$author = get_the_author_meta('ID');
+			$sticky = get_option( 'sticky_posts' );
+			$args = array(
+				'post__not_in' => array($post->ID),
+				'post__not_in' => $sticky,
+				'author__in' => $author,
+				'posts_per_page' => 5,
+				'orderby' => 'date',
+			);
+			$my_query = new WP_Query( $args ); ?>
+			<p class="articles__ttl">関連の記事</p>
+			<div class="container">
+				<?php
+				if( $my_query->have_posts() ) :
+					while ( $my_query->have_posts() ) : $my_query->the_post();
+						?>
+						<div id="post-<?php the_ID(); ?>"class="articles__article">
+							<div class="article__thumb">
+								<div class="article__thumb-img" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
+								</div>
+								<?php
+								$cats = get_the_category();
+								$cats = $cats[0];
+								?>
+								<div class="article__category <?php echo $cats->category_nicename;?>">
+									<img src="<?php echo get_template_directory_uri(); ?>/images/ic_<?php echo $cats->category_nicename;?>.png" alt="">
+									<div class="article__category-ttl"><?php the_category(); ?></div>
+								</div>
+								<span class="article__community"><a href="">[ PHP勉強会 ]</a></span>
+							</div>
+							<div class="article__detail">
+								<p class="article__ttl">
+									<?php the_title(); ?>
+								</p>
+								<div class="article__text">
+									<?php the_excerpt();?>
+								</div>
+								<span class="article__date"><?php the_date(); ?></span>
+
+								<div class="article__writer">
+									<div class="writer-icon"></div>
+									<span class="writer-name"><?php the_author();?></span>
+								</div>
+
+							</div>
+						</div>
+						<?php
+					endwhile;
+				else :
+					?>
+					<p>関連するの記事は見つかりませんでした。</p>
+					<?php
+				endif;
+				wp_reset_postdata();
+				?>
+				<div class="link__user-archives">
+					<a href="<?php echo esc_url(
+						get_author_posts_url( get_the_author_meta('ID') )
+					); ?>">
+						<?php the_author();?>の記事一覧へ
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 </div>
 </body>
 </html>

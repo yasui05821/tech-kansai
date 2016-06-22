@@ -2,7 +2,7 @@
 		<div class="contents-top">
 			<div class="about pc--none">
 				<div class="container">
-					<div class="about__ttl"><img src="<?php echo get_template_directory_uri(); ?>//images/logo.png" alt=""></div>
+					<div class="about__ttl"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.png" alt=""></div>
 					<div class="about__description">
 						関西のWeb・IT業界のコミュニティ<br>
 						（勉強会・交流会）情報を中心に、<br>
@@ -14,18 +14,28 @@
 
 			<div class="articles articles--new">
 				<div class="container">
-					<h1 class="articles__ttl">最新の記事</h1>
-					<div class="pagination">
+					<p class="articles__ttl">最新の記事</p>
 						<?php
 						if( have_posts() ) :
 							while ( have_posts() ) : the_post();
 								?>
 								<div id="post-<?php the_ID(); ?>"class="articles__article">
 									<div class="article__thumb">
-										<div class="article__thumb-img">
+										<div class="article__thumb-img" style="background-image: url(<?php
+											$directory = get_template_directory_uri();
+											if( has_post_thumbnail() ) {
+												echo wp_get_attachment_url( get_post_thumbnail_id() );
+											} else {
+												echo $directory."/images/no-img.jpg";
+											}
+										?>)">
 										</div>
-										<div class="article__category category--prog">
-											<i class="material-icons">build</i>
+										<?php
+											$cats = get_the_category();
+											$cats = $cats[0];
+										?>
+										<div class="article__category <?php echo $cats->category_nicename;?>">
+											<img src="<?php echo get_template_directory_uri(); ?>/images/ic_<?php echo $cats->category_nicename;?>.png" alt="">
 											<div class="article__category-ttl"><?php the_category(); ?></div>
 										</div>
 										<span class="article__community"><a href="">[ PHP勉強会 ]</a></span>
@@ -35,13 +45,13 @@
 											<?php the_title(); ?>
 										</p>
 										<div class="article__text">
-											<?php the_content( '続きを読む &raquo;'); ?>
+											<?php the_excerpt();?>
 										</div>
 										<span class="article__date"><?php the_date(); ?></span>
 
 										<div class="article__writer">
 											<div class="writer-icon"></div>
-											<span class="writer-name">mikakane</span>
+											<span class="writer-name"><?php the_author();?></span>
 										</div>
 
 									</div>
@@ -55,7 +65,7 @@
 							<?php
 						endif;
 						?>
-
+					<div class="pagination">
 						<?php $args = array(
 							'prev_text' => '&laquo; PREV',
 							'next_text' => 'NEXT &raquo;',
@@ -65,72 +75,6 @@
 						);
 						the_posts_pagination( $args ); ?>
 					</div>
-					<div class="articles__article">
-						<div class="article__thumb">
-							<div class="article__thumb-img">
-							</div>
-							<div class="article__category category--prog">
-								<i class="material-icons">build</i>
-								<span>プログラミング</span>
-							</div>
-							<span class="article__community"><a href="">[ PHP勉強会 ]</a></span>
-						</div>
-						<div class="article__detail">
-							<p class="article__ttl">これはダミーです</p>
-							<p class="article__text">ずっと先刻を観念院はもうその影響でたらなりに妨げばいなけれには批評受けるますですので、少しにも過ぎで…</p>
-							<span class="article__date">1026年1月５日</span>
-
-							<div class="article__writer">
-								<div class="writer-icon"></div>
-								<span class="writer-name">mikakane</span>
-							</div>
-
-						</div>
-					</div>
-					<div class="articles__article">
-						<div class="article__thumb">
-							<div class="article__thumb-img">
-							</div>
-							<div class="article__category category--design">
-								<i class="material-icons">mode_edit</i>
-								<span>デザイン</span>
-							</div>
-							<span class="article__community"><a href="">[ PHP勉強会PHP勉強会PHP勉強会PHP勉強会PHP勉強会 ]</a></span>
-						</div>
-						<div class="article__detail">
-							<p class="article__ttl">PHPカンファレンス北海道</p>
-							<p class="article__text">ずっと先刻を観念院はもうその影響でたらなりに妨げばいなけれには批評受けるますですので、少しにも過ぎで…</p>
-							<span class="article__date">2016/4/16</span>
-
-							<div class="article__writer">
-								<div class="writer-icon"></div>
-								<span class="writer-name">mikakane</span>
-							</div>
-
-						</div>
-					</div>
-					<div class="articles__article">
-						<div class="article__thumb">
-							<div class="article__thumb-img">
-							</div>
-							<div class="article__category category--other">
-								<i class="material-icons">lightbulb_outline</i>
-								<span>考え方・その他</span>
-							</div>
-							<span class="article__community"><a href="">[ 関西フロントエンドUG ]</a></span>
-						</div>
-						<div class="article__detail">
-							<p class="article__ttl">PHPカンファレンス北海道 2016にて登壇してきました。</p>
-							<p class="article__text">ずっと先刻を観念院はもうその影響でたらなりに妨げばいなけれには批評受けるますですので、少しにも過ぎで…</p>
-							<span class="article__date">2016/4/16</span>
-
-							<div class="article__writer">
-								<div class="writer-icon"></div>
-								<span class="writer-name">mikakane</span>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 

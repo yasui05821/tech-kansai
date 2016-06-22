@@ -25,7 +25,7 @@ html {
     text-decoration: none;
   }
   a:hover {
-    color: $clr-gray2;
+    opacity: .5;
   }
 }
 .sp--none {
@@ -107,6 +107,9 @@ html {
 .articles {
   @include article;
 }
+.articles--related {
+  margin-bottom: 3em;
+}
 
 .events {
   @include event;
@@ -118,6 +121,58 @@ html {
 
 .contact {
   @include contact;
+}
+.blog__writer-profile {
+  margin: 2em auto;
+  border: none;
+  text-align: center;
+
+  .writer-profile__ttl {
+    @include heading--bg;
+    margin: 0;
+    padding: .5em;
+  }
+  .writer-profile_contents {
+    padding: 1em;
+  }
+  .writer-icon {
+    margin: 1.5em 0 .5em;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 400px;
+    background-image: url("http://placekitten.com/400/400");
+    background-size: cover;
+  }
+  .writer-name {
+    font-size: 1.2em;
+  }
+  .writer-skill {
+    color: $clr-gray2;
+  }
+  .writer-sns__icon {
+    margin: .7em 0 1.5em;
+    display: inline-block;
+    padding: .5em;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: .3em;
+
+  }
+  .writer-sns--tw {
+    border: 1px solid $clr-tw-dark;
+    i{
+      font-size: 1.3em;
+      color: $clr-tw-dark;
+    }
+  }
+  .writer-sns--fb {
+    border: 1px solid $clr-fb-dark;
+    i{
+      font-size: 1.3em;
+      color: $clr-fb-dark;
+    }
+  }
 }
 
 // common contents start end
@@ -204,7 +259,7 @@ html {
   // カラム設定
   .pc-colmn-wrap {
     margin: 0 auto;
-    max-width:1200px;
+    width: 1200px;
     display: flex;
     -webkit-justify-content: space-between; /* Safari */
     justify-content:         space-between;
@@ -213,8 +268,7 @@ html {
 
   .pc-column-left {
     margin-top: $header-size;
-    min-width: 185px;
-    max-width: 185px;
+    width: 185px;
     border-right: 1px solid $clr-gray3;
 
     img {
@@ -250,7 +304,7 @@ html {
   }
   // pc-colum-center start
   .pc-column-center {
-    max-width: 980px;
+    width: 820px;
     margin-top: $header-size;
     .article__detail {
       width: 100%;
@@ -261,8 +315,7 @@ html {
   .pc-column-right {
     margin-top: $header-size;
     border-left: 1px solid $clr-gray3;
-    max-width: 195px;
-    min-width: 195px;
+    width: 195px;
     .events {
       border-right: 1px solid $clr-gray3;
       font-size: $font-sm;
@@ -285,6 +338,49 @@ html {
       margin: .5em 0;
       display: block;
     }
+
+    .blog__writer-profile {
+      border-right: 1px solid $clr-gray3;
+    }
+    .articles--user {
+      border-right: 1px solid $clr-gray3;
+      .articles__ttl {
+        text-align: center;
+        font-size: .9em;
+        font-weight: normal;
+        color: #8A8887;
+        background: #EDECEB;
+        margin: 0;
+        padding: .5em;
+      }
+      .articles__article {
+        display: block;
+        .article__detail {
+          margin: 0;
+          width: 100%;
+        }
+        .article__thumb {
+          width: 100%;
+        }
+
+        .article__thumb-img {
+          width: 100%;
+        }
+      }
+
+    }
+    .link__user-archives {
+      margin-top: 1em;
+      text-align: right;
+      a {
+        display: inline-block;
+        @include link-style--triangle;
+        font-size: $font-sm;
+      }
+      a:hover {
+        @include link-style--triangle($clr-gray2);
+      }
+    }
   }
 
 }
@@ -300,8 +396,13 @@ ul.post-categories {
 }
   //paginaition
   .pagination {
+    text-align: right;
+    margin-bottom: 5em;
     .screen-reader-text {
       display: none;
+    }
+    .nav-links {
+      display: inline-block;
     }
 
     .next {
