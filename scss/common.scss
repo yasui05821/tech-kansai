@@ -90,7 +90,7 @@ html {
       display: inline-block;
     }
     i {
-      margin-top: 8px;
+      margin-top: 6px;
       font-size: 1.6em;
       color: #fff;
     }
@@ -123,7 +123,7 @@ html {
   @include contact;
 }
 .blog__writer-profile {
-  margin: 2em auto;
+  margin-bottom: 2em;
   border: none;
   text-align: center;
 

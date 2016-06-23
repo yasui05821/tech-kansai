@@ -305,7 +305,7 @@ html {
   .header .search__btn--sp a {
     display: inline-block; }
   .header .search__btn--sp i {
-    margin-top: 8px;
+    margin-top: 6px;
     font-size: 1.6em;
     color: #fff; }
 
@@ -552,7 +552,7 @@ html {
       padding: .8em 5em; }
 
 .blog__writer-profile {
-  margin: 2em auto;
+  margin-bottom: 2em;
   border: none;
   text-align: center; }
   .blog__writer-profile .writer-profile__ttl {

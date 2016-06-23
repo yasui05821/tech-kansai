@@ -120,7 +120,8 @@
 
 </div>
 <div class="pc-column-right sp--none">
-	<div class="events">
+	<?php if(!is_single()): ?>
+		<div class="events">
 		<h1 class="events__ttl">開催予定のイベント</h1>
 		<div class="container">
 			<div class="events__event">
@@ -218,7 +219,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="pc-column-right">
+	<?php else :?>
 		<div class="blog__writer-profile">
 			<div class="writer-profile__ttl">記事を書いた人</div>
 			<div class="writer-icon"></div>
@@ -256,7 +257,14 @@
 						?>
 						<div id="post-<?php the_ID(); ?>"class="articles__article">
 							<div class="article__thumb">
-								<div class="article__thumb-img" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
+								<div class="article__thumb-img" style="background-image: url(<?php
+								$directory = get_template_directory_uri();
+								if( has_post_thumbnail() ) {
+									echo wp_get_attachment_url( get_post_thumbnail_id() );
+								} else {
+									echo $directory."/images/no-img.jpg";
+								}
+								?>)">
 								</div>
 								<?php
 								$cats = get_the_category();
@@ -302,8 +310,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
+	<?php endif; ?>
 
 </div>
 </body>

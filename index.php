@@ -19,7 +19,7 @@
 						if( have_posts() ) :
 							while ( have_posts() ) : the_post();
 								?>
-								<div id="post-<?php the_ID(); ?>"class="articles__article">
+								<div id="post-<?php the_ID(); ?>"class="articles__article clickBobble">
 									<div class="article__thumb">
 										<div class="article__thumb-img" style="background-image: url(<?php
 											$directory = get_template_directory_uri();

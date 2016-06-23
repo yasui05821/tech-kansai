@@ -6,13 +6,14 @@
 	<!--<base href="http://tec-kansai.tech/">-->
 	<title>
 		<?php
-		if ( is_front_page()){
-			wp_title(":", true, 'right');
+		if ( !is_front_page()){
+			wp_title("|", true, 'right');
 		}
 		bloginfo('name');
 		?>
 	</title>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/common.css">
+	<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/favicon.ico">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
