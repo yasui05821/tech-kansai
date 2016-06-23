@@ -392,9 +392,12 @@ html {
   margin-left: 10px;
   width: calc(50% + 10vw); }
 
-.articles .article__ttl {
+.articles .article__ttl a {
   font-weight: bold;
   color: #71706F; }
+
+.articles .clickBobble {
+  cursor: pointer; }
 
 .articles .article__text {
   margin-top: 1em;
@@ -1197,9 +1200,12 @@ html {
   margin-left: 10px;
   width: calc(50% + 10vw); }
 
-.contents-blog .articles .article__ttl {
+.contents-blog .articles .article__ttl a {
   font-weight: bold;
   color: #71706F; }
+
+.contents-blog .articles .clickBobble {
+  cursor: pointer; }
 
 .contents-blog .articles .article__text {
   margin-top: 1em;

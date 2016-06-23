@@ -19,7 +19,7 @@
 						if( have_posts() ) :
 							while ( have_posts() ) : the_post();
 								?>
-								<div id="post-<?php the_ID(); ?>"class="articles__article clickBobble">
+								<div id="post-<?php the_ID(); ?>"class="articles__article clickBobble" style="cursor: pointer">
 									<div class="article__thumb">
 										<div class="article__thumb-img" style="background-image: url(<?php
 											$directory = get_template_directory_uri();
@@ -42,16 +42,24 @@
 									</div>
 									<div class="article__detail">
 										<p class="article__ttl">
-											<?php the_title(); ?>
+											<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 										</p>
 										<div class="article__text">
 											<?php the_excerpt();?>
 										</div>
 										<span class="article__date"><?php the_date(); ?></span>
-
 										<div class="article__writer">
-											<div class="writer-icon"></div>
-											<span class="writer-name"><?php the_author();?></span>
+											<div class="writer-icon" style="background-image: url(
+												<?php
+													$user_email = get_the_author_meta('user_email');
+													$img_hash = md5( "$user_email" );
+
+													echo  "https://www.gravatar.com/avatar/"."$img_hash"
+												?>
+											)">
+											</div>
+											<span class="writer-name"><?php the_author();?>
+											</span>
 										</div>
 
 									</div>

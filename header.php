@@ -17,6 +17,20 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="https://necolas.github.io/normalize.css/4.1.1/normalize.css">
+	<?php wp_enqueue_script( 'jquery' ); ?>
+	<?php wp_head(); ?>
+	<script src="<?php echo get_template_directory_uri(); ?>/js/example.js">
+	</script>
+	<script>
+		jQuery(function($){
+			console.log("piyo");
+			$(".clickBobble").on('click',function(e) {
+				console.log("うごいてる");
+				$(e.this).find('a').click();
+			});
+		});
+
+	</script>
 </head>
 <body>
 <div class="header">

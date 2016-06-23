@@ -421,8 +421,12 @@
           width: calc(50% + 10vw);
         }
         .article__ttl {
-          font-weight: bold;
-          color: $clr-black;
+          a {
+            font-weight: bold;
+            color: $clr-black;}
+        }
+        .clickBobble {
+          cursor: pointer
         }
         .article__text {
           margin-top: 1em;
