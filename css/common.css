@@ -379,7 +379,7 @@ html {
 .articles .category-design {
   background: #DC8692; }
 
-.articles .category-other {
+.articles .category-ohter {
   background: #9997CB; }
 
 .articles .article__community {
@@ -1068,9 +1068,8 @@ html {
     background-image: url("http://placekitten.com/400/400");
     background-size: cover; }
   .contents-blog #blog__content .blog__writer-profile .writer-name {
-    font-size: 1.2em; }
-    .contents-blog #blog__content .blog__writer-profile .writer-name p {
-      margin-bottom: 0; }
+    font-size: 1.2em;
+    margin: 0; }
   .contents-blog #blog__content .blog__writer-profile .writer-skill {
     color: #CCCCCC; }
   .contents-blog #blog__content .blog__writer-profile .writer-sns__icon {
@@ -1187,7 +1186,7 @@ html {
 .contents-blog .articles .category-design {
   background: #DC8692; }
 
-.contents-blog .articles .category-other {
+.contents-blog .articles .category-ohter {
   background: #9997CB; }
 
 .contents-blog .articles .article__community {

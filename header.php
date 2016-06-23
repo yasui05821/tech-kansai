@@ -23,10 +23,10 @@
 	</script>
 	<script>
 		jQuery(function($){
-			console.log("piyo");
 			$(".clickBobble").on('click',function(e) {
-				console.log("うごいてる");
-				$(e.this).find('a').click();
+				e.stopPropagation();
+				var url = $(e.currentTarget).find('a.titleLink').attr("href");
+				location.href = url;
 			});
 		});
 

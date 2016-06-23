@@ -42,7 +42,7 @@
 									</div>
 									<div class="article__detail">
 										<p class="article__ttl">
-											<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+											<a class="titleLink" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 										</p>
 										<div class="article__text">
 											<?php the_excerpt();?>
@@ -53,8 +53,11 @@
 												<?php
 													$user_email = get_the_author_meta('user_email');
 													$img_hash = md5( "$user_email" );
-
-													echo  "https://www.gravatar.com/avatar/"."$img_hash"
+													if($img_hash != "5c352d2f2b385a211964ad3daf1fe230")  {
+														echo "https://www.gravatar.com/avatar/"."$img_hash";
+														}else{
+														echo "http://placekitten.com/400/400";
+													}
 												?>
 											)">
 											</div>

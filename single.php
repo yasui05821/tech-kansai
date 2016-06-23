@@ -10,7 +10,18 @@
 					<h1 class="blog-h1"><?php the_title(); ?></h1>
 					<p class="blog__date"><?php the_date(); ?></p>
 					<div class="blog__writer">
-						<div class="writer-icon"></div>
+						<div class="writer-icon" style="background-image: url(
+							<?php
+							$user_email = get_the_author_meta('user_email');
+							$img_hash = md5( "$user_email" );
+							if($img_hash != "5c352d2f2b385a211964ad3daf1fe230")  {
+								echo "https://www.gravatar.com/avatar/"."$img_hash";
+							}else{
+								echo "http://placekitten.com/400/400";
+							}
+							?>
+							)">
+						</div>
 						<p class="writer-name"><?php the_author();?></p>
 					</div>
 					<div class="blog__sns">
@@ -50,7 +61,18 @@
 					<div class="blog__community"><a href="">[ 関西フロントエンドUG ]</a></p></div>
 					<div class="blog__writer-profile">
 						<div class="writer-profile__ttl">記事を書いた人</div>
-						<div class="writer-icon"></div>
+						<div class="writer-icon" style="background-image: url(
+						<?php
+						$user_email = get_the_author_meta('user_email');
+						$img_hash = md5( "$user_email" );
+						if($img_hash != "5c352d2f2b385a211964ad3daf1fe230")  {
+							echo "https://www.gravatar.com/avatar/"."$img_hash";
+						}else{
+							echo "http://placekitten.com/400/400";
+						}
+						?>
+							)">
+						</div>
 						<p class="writer-name">
 							<a href="<?php echo esc_url(
 								get_author_posts_url( get_the_author_meta('ID') )
@@ -102,14 +124,20 @@
 						$my_query = new WP_Query( $args ); ?>
 					<div class="container">
 						<p class="articles__ttl">関連の記事</p>
-
 						<?php
 						if( $my_query->have_posts() ) :
 							while ( $my_query->have_posts() ) : $my_query->the_post();
 								?>
-								<div id="post-<?php the_ID(); ?>"class="articles__article">
+								<div id="post-<?php the_ID(); ?>"class="articles__article clickBobble">
 									<div class="article__thumb">
-										<div class="article__thumb-img" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
+										<div class="article__thumb-img" style="background-image: url(<?php
+										$directory = get_template_directory_uri();
+										if( has_post_thumbnail() ) {
+											echo wp_get_attachment_url( get_post_thumbnail_id() );
+										} else {
+											echo $directory."/images/no-img.jpg";
+										}
+										?>)">
 										</div>
 										<?php
 										$cats = get_the_category();
@@ -123,7 +151,7 @@
 									</div>
 									<div class="article__detail">
 										<p class="article__ttl">
-											<?php the_title(); ?>
+											<a class="titleLink" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 										</p>
 										<div class="article__text">
 											<?php the_excerpt();?>
@@ -131,7 +159,18 @@
 										<span class="article__date"><?php the_date(); ?></span>
 
 										<div class="article__writer">
-											<div class="writer-icon"></div>
+											<div class="writer-icon" style="background-image: url(
+												<?php
+												$user_email = get_the_author_meta('user_email');
+												$img_hash = md5( "$user_email" );
+												if($img_hash != "5c352d2f2b385a211964ad3daf1fe230")  {
+													echo "https://www.gravatar.com/avatar/"."$img_hash";
+												}else{
+													echo "http://placekitten.com/400/400";
+												}
+												?>
+												)">
+											</div>
 											<span class="writer-name"><?php the_author();?></span>
 										</div>
 
@@ -160,14 +199,20 @@
 					$my_query = new WP_Query( $args ); ?>
 					<div class="container">
 						<p class="articles__ttl">最新の記事</p>
-
 						<?php
 						if( $my_query->have_posts() ) :
 							while ( $my_query->have_posts() ) : $my_query->the_post();
 								?>
-								<div id="post-<?php the_ID(); ?>"class="articles__article">
+								<div id="post-<?php the_ID(); ?>"class="articles__article clickBobble">
 									<div class="article__thumb">
-										<div class="article__thumb-img" style="background-image: url(<?php echo wp_get_attachment_url( get_post_thumbnail_id() ); ?>)">
+										<div class="article__thumb-img" style="background-image: url(<?php
+										$directory = get_template_directory_uri();
+										if( has_post_thumbnail() ) {
+											echo wp_get_attachment_url( get_post_thumbnail_id() );
+										} else {
+											echo $directory."/images/no-img.jpg";
+										}
+										?>)">
 										</div>
 										<?php
 										$cats = get_the_category();
@@ -181,7 +226,7 @@
 									</div>
 									<div class="article__detail">
 										<p class="article__ttl">
-											<?php the_title(); ?>
+											<a class="titleLink" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 										</p>
 										<div class="article__text">
 											<?php the_excerpt();?>
@@ -189,7 +234,18 @@
 										<span class="article__date"><?php the_date(); ?></span>
 
 										<div class="article__writer">
-											<div class="writer-icon"></div>
+											<div class="writer-icon" style="background-image: url(
+												<?php
+												$user_email = get_the_author_meta('user_email');
+												$img_hash = md5( "$user_email" );
+												if($img_hash != "5c352d2f2b385a211964ad3daf1fe230")  {
+													echo "https://www.gravatar.com/avatar/"."$img_hash";
+												}else{
+													echo "http://placekitten.com/400/400";
+												}
+												?>
+													)">
+												</div>
 											<span class="writer-name"><?php the_author();?></span>
 										</div>
 
